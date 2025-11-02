@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>Form Input Data Penduduk</h2>
+
+    <form action="input.php" onsubmit="return validateForm()" method="post">
+        <label for="kecamatan">Kecamatan:</label><br>
+        <input type="text" id="kecamatan" name="kecamatan"><br>
+
+        <label for="longitude">Longitude:</label><br>
+        <input type="text" id="longitude" name="longitude"><br>
+
+        <label for="latitude">Latitude:</label><br>
+        <input type="text" id="latitude" name="latitude"><br>
+
+        <label for="luas">Luas:</label><br>
+        <input type="text" id="luas" name="luas"><br>
+
+        <label for="jumlah_penduduk">Jumlah Penduduk:</label><br>
+        <input type="text" id="jumlah_penduduk" name="jumlah_penduduk"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="informasi"></p>
+
+    <script>
+        function validateForm() {
+            let kecamatan = document.getElementById("kecamatan").value.trim();
+            let luas = document.getElementById("luas").value;
+            let jumlah = document.getElementById("jumlah_penduduk").value;
+            let long = document.getElementById("longitude").value;
+            let lat = document.getElementById("latitude").value;
+            let text = "";
+
+            if (kecamatan === "") {
+                text = "Kecamatan tidak boleh kosong!";
+            } else if (isNaN(luas) || luas <= 0) {
+                text = "Data luas harus angka positif.";
+            } else if (isNaN(jumlah) || jumlah <= 0) {
+                text = "Jumlah penduduk harus angka positif.";
+            } else if (isNaN(long) || isNaN(lat)) {
+                text = "Longitude dan Latitude harus berupa angka.";
+            }
+
+            if (text !== "") {
+                document.getElementById("informasi").innerHTML = text;
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>
